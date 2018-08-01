@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+}
+
+*:empty {
+    background-color: rgb(219, 219, 219);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    background-color: darkcyan;
+}
+
+button.disabledButton {
+    color: #525252;
+    background-color: gray;
+    cursor: auto;
+}
+
+.line-through {
+    text-decoration: line-through;
+}
+
+#app {
+    width: 90%;
+    max-width: 1170px;
+    background-color: rgb(201, 201, 201);
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+.product {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.product-image {
+    width: 30%;
+}
+
+.product-info {
+    width: 70%;
+    padding: 3vh;
+}
+
+.cart {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+button,
+.result-in-cart {
+    width: 150px;
+    height: 30px;
+    margin-right: 45px;
+    line-height: 27px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.result-in-cart {
+    margin-right: 0;
+    background-color: white;
+}
+
+.color-box {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    cursor: pointer;
+}
