@@ -2,8 +2,9 @@ var app = new Vue({
     el: '#app',
     data: {
         product: 'Socks',
+        brand: 'Vue Mastery',
         description: 'A pair of warm, fuzzy socks',
-        image: 'assets/img/green-sock.png',
+        //image: 'assets/img/green-sock.png',
         alt: {
             green: 'This is amazing green socks',
             blue: 'This is amazing blue socks'
@@ -11,7 +12,9 @@ var app = new Vue({
         inventory: 5,
         materials: ['80% cotton', '20% polyester', 'gender neutral'],
         cart: 0,
-        inStock: false,
+        //inStock: false,
+        onSale: true,
+        selectedVariant: 0,
         cartButtonsText: {
             add: 'Add to cart',
             remove: 'Remove from cart'
@@ -20,12 +23,14 @@ var app = new Vue({
             {
                 variantId: 2245,
                 variantColor: 'green',
-                variantImage: 'assets/img/green-sock.png'
+                variantImage: 'assets/img/green-sock.png',
+                variantQuantity: 10
             },
             {
                 variantId: 2246,
                 variantColor: 'blue',
-                variantImage: 'assets/img/blue-sock.png'
+                variantImage: 'assets/img/blue-sock.png',
+                variantQuantity: 0
             }
         ],
     },
@@ -36,8 +41,25 @@ var app = new Vue({
         removeFromCart: function () {
             if (this.cart > 0) this.cart -= 1;
         },
-        updateProduct: function (variantImage) {
-            this.image = variantImage;
+        updateProduct: function (index) {
+            this.selectedVariant = index;
+            /*console.log(index);*/
+        }
+    },
+    computed: {
+        title() {
+            return this.brand + ' ' + this.product;
+        },
+        image() {
+            return this.variants[this.selectedVariant].variantImage;
+        },
+        inStock() {
+            return this.variants[this.selectedVariant].variantQuantity;
+        },
+        onMarket() {
+            if (this.onSale) {
+                return this.brand + ' ' + this.product + ' ' + 'onSale';
+            }
         }
     }
 });
