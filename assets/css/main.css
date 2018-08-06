@@ -27,6 +27,7 @@ button.disabledButton {
 
 #app {
     width: 90%;
+    position: relative;
     max-width: 1170px;
     background-color: rgb(201, 201, 201);
     min-height: 100vh;
@@ -65,8 +66,15 @@ button,
 }
 
 .result-in-cart {
+    position: absolute;
+    right: 10px;
+    top: 10px;
     margin-right: 0;
     background-color: white;
+}
+
+.result-in-cart p {
+    margin: 0;
 }
 
 .color-box {

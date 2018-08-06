@@ -3,6 +3,10 @@ Vue.component('product', {
         premium: {
             type: Boolean,
             required: true
+        },
+        trigger_one: {
+            type: Boolean,
+            required: true
         }
     },
     template: `
@@ -42,8 +46,6 @@ Vue.component('product', {
                     </button>
 
                     <button v-on:click="removeFromCart">{{ cartButtonsText.remove }}</button>
-
-                    <div class="result-in-cart">Cart({{ cart }})</div>
                 </div>
             </div>
         </div>
@@ -60,11 +62,10 @@ Vue.component('product', {
             },
             inventory: 5,
             materials: ['80% cotton', '20% polyester', 'gender neutral'],
-            cart: 0,
             onSale: true,
             selectedVariant: 0,
             cartButtonsText: {
-                add: 'Add tbulko cart',
+                add: 'Add to cart',
                 remove: 'Remove from cart'
             },
             variants: [
@@ -78,21 +79,22 @@ Vue.component('product', {
                     variantId: 2246,
                     variantColor: 'blue',
                     variantImage: 'assets/img/blue-sock.png',
-                    variantQuantity: 0
+                    variantQuantity: 5
                 }
             ],
         }
     },
     methods: {
         addToCart: function () {
-            this.cart += 1;
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId);
         },
         removeFromCart: function () {
-            if (this.cart > 0) this.cart -= 1;
+            trigger_one = false;
+            this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId, trigger_one);
         },
         updateProduct: function (index) {
             this.selectedVariant = index;
-            /*console.log(index);*/
+            /*console.log(index);*/1
         }
     },
     computed: {
@@ -117,6 +119,21 @@ var app = new Vue({
     el: '#app',
     data: {
         premium: true,
+        cart: [],
+        trigger_one: true
+    },
+    methods: {
+        updateCart: function(id) {
+            this.cart.push(id);
+        },
+        removeFromCart: function(id, trigger_one) {
+            for (var i = 0, len = this.cart.length; i < len; i++) {
+                if (this.cart[i] === id && !trigger_one) {
+                    this.cart.splice(i, 1);
+                    trigger_one = true;
+                }
+            }
+        },
     }
 });
 
