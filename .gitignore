@@ -1,2 +1,5 @@
 node_modules/
 package-lock.json
+dist/index.html
+dist/main.js
+assets/js/index.html

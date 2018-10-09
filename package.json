@@ -4,6 +4,9 @@
   "description": "vue app from Vue Mastery",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack --mode development ./assets/js/main.js --output ./assets/dev/js/main.js",
+    "build": "webpack --mode production ./assets/js/main.js --output ./dist/main.js",
+    "start": "webpack-dev-server --mode development ./assets/js/main.js --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +21,15 @@
   },
   "homepage": "https://github.com/alexwertand/vue-app#readme",
   "devDependencies": {
-    "webpack": "^4.20.2"
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.3",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
   }
 }
